@@ -37,10 +37,16 @@ class Spanacom{
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
         curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
+        
         $response_body = curl_exec($ch);
+if($httpcode== 200){
         
             //echo 'Test APIKEY:'.$this->apikey.' func'.$func." params".$params."<br>";//.$funcd;
         return json_decode($response_body);
+}else{
+
+        throw new Exception($response_body);
+}
         //}
     //}
     }
