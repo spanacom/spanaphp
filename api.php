@@ -1,13 +1,10 @@
 <?
-
 error_reporting(E_ALL);
-
 class Spanacom{
     private $apikey;
     private $debug = false;
     private $ch;
     public $root = 'https://accesosms.es/api/1.0';
-
     public function __construct($apikey=null) {
         
     $this->apikey=$apikey;
@@ -39,16 +36,12 @@ class Spanacom{
         curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
         
         $response_body = curl_exec($ch);
+$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 if($httpcode== 200){
-        
-            //echo 'Test APIKEY:'.$this->apikey.' func'.$func." params".$params."<br>";//.$funcd;
-        return json_decode($response_body);
+return json_decode($response_body);
 }else{
-
         throw new Exception($response_body);
 }
-        //}
-    //}
     }
 }
 ?>
