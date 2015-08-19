@@ -1,5 +1,4 @@
-<?
-error_reporting(E_ALL);
+<?php
 class Spanacom{
     private $apikey;
     private $debug = false;
@@ -8,7 +7,6 @@ class Spanacom{
     public function __construct($apikey=null) {
         
     $this->apikey=$apikey;
-
         $this->ch = curl_init();
         curl_setopt($this->ch, CURLOPT_USERAGENT, 'Spanacom-PHP/1.0.54');
         curl_setopt($this->ch, CURLOPT_POST, true);
