@@ -8,6 +8,15 @@ class Spanacom{
     public function __construct($apikey=null) {
         
     $this->apikey=$apikey;
+    
+if(method_exists($this,'destruct')) 
+    register_shutdown_function(array($this,'destruct')); 
+    }
+    
+    function destruct(){
+    if(!empty($this->ch)){
+    curl_close($this->ch);
+    }
     }
     function __call($func, $params){
     //function __call($func, $params){
