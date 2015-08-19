@@ -11,6 +11,17 @@ class Spanacom{
     
 if(method_exists($this,'destruct')) 
     register_shutdown_function(array($this,'destruct')); 
+    
+    
+        $this->ch = curl_init();
+        curl_setopt($this->ch, CURLOPT_USERAGENT, 'Spanacom-PHP/1.0.54');
+        curl_setopt($this->ch, CURLOPT_POST, true);
+        curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, false);
+        curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($this->ch, CURLOPT_HEADER, false);
+        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($this->ch, CURLOPT_TIMEOUT, 600);
     }
     
     function destruct(){
@@ -24,16 +35,6 @@ if(method_exists($this,'destruct'))
             
             //print_r($params);
             
-        
-        $this->ch = curl_init();
-        curl_setopt($this->ch, CURLOPT_USERAGENT, 'Spanacom-PHP/1.0.54');
-        curl_setopt($this->ch, CURLOPT_POST, true);
-        curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, false);
-        curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($this->ch, CURLOPT_HEADER, false);
-        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 30);
-        curl_setopt($this->ch, CURLOPT_TIMEOUT, 600);
         
         $params['apikey'] = $this->apikey;
         $params = json_encode($params);
