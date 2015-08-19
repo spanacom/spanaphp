@@ -8,11 +8,7 @@ class Spanacom{
     public function __construct($apikey=null) {
         
     $this->apikey=$apikey;
-    
-if(method_exists($this,'destruct')) 
-    register_shutdown_function(array($this,'destruct')); 
-    
-    
+
         $this->ch = curl_init();
         curl_setopt($this->ch, CURLOPT_USERAGENT, 'Spanacom-PHP/1.0.54');
         curl_setopt($this->ch, CURLOPT_POST, true);
@@ -22,6 +18,10 @@ if(method_exists($this,'destruct'))
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($this->ch, CURLOPT_TIMEOUT, 600);
+        
+    register_shutdown_function(array($this,'destruct')); 
+    
+    
     }
     
     function destruct(){
