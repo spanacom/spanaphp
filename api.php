@@ -28,19 +28,13 @@ class Spanacom{
     }
     }
     function __call($func, $params){
-    //function __call($func, $params){
-        //if(in_array($funcd, $this->array)){
-            
-            //print_r($params);
-            
-        
-        $params['apikey'] = $this->apikey;
-        $params = json_encode($params);
+        $params[0]['apikey']=$this->apikey;
+        $paramshttp = json_encode((object)$params[0]);
         $ch = $this->ch;
         $func = str_replace("_","/",$func);
         curl_setopt($ch, CURLOPT_URL, $this->root . '/'.$func . '.json');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $paramshttp);
         curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
         
         $response_body = curl_exec($ch);
