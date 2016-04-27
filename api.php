@@ -3,7 +3,7 @@ class Spanacom{
     private $apikey;
     private $debug = false;
     private $ch;
-    public $root = 'https://accesosms.es/api/1.0';
+    public $root = 'http://spanacom.com/api/1.0';
     public function __construct($apikey=null) {
         
     $this->apikey=$apikey;
